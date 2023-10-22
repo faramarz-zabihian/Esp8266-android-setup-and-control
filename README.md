@@ -1,8 +1,11 @@
-# Californium - Android Demo
+# ESP8266 setup and control
 
-This demo shows, how the Californium libraries are used with Android.
-It doesn't cover a close to production app, e.g. if you rotate the device, the function is more or less reseted.
+This is a complementary project to another project of mine 'Non-Touch-Light-Switch--...'
+Thanks to the Californium project and ESPTouch that allowed me to seamlessly talk to my switch using CoAP.
 
-## Build
+ESP chip needs:
 
-Please use a current version of the Android Studio. Import the project there and build it with the Android Studio.
+ a username/password and a WIFI point to connect to
+ and a network point to listen and send its reports to.
+ 
+ 
