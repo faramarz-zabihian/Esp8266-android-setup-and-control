@@ -1,0 +1,119 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://jcenter.bintray.com/'
+   //     artifactUrls = ["https://mvnrepository.com/artifact/com.github.warkiz.tickseekbar/tickseekbar"]
+    }
+    maven {
+        url 'https://repo.eclipse.org/content/repositories/californium/'
+    }
+}
+
+repositories {
+    // mavenLocal()
+
+    maven {
+        url 'https://repo.eclipse.org/content/repositories/californium/'
+    }
+}
+
+android {
+    compileSdkVersion 28
+    //buildToolsVersion "28.0.3"
+    def RELEASE_STORE_FILE = 'signature/espdebug'
+    def RELEASE_STORE_PASSWORD = 'esp_debug'
+    def RELEASE_KEY_PASSWORD = 'esp_debug'
+    def RELEASE_KEY_ALIAS = 'esp_debug'
+
+    signingConfigs {
+        cali {
+            // requires a "gradle.properties" file with the
+            // RELEASE_??? properties below in the ".gradle" folder.
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyPassword RELEASE_KEY_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.farashahr.esp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.cali
+        }
+        debug {
+            minifyEnabled false
+            //signingConfig signingConfigs.cali
+        }
+    }
+
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    packagingOptions {
+        pickFirst 'META-INF/INDEX.LIST'
+        pickFirst 'META-INF/io.netty.versions.properties'
+        pickFirst 'META-INF/legal/**'
+        exclude '**/*.jks'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+
+dependencies {
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.fragment:fragment:1.3.5'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    //implementation 'android.core:core:1.3.2'
+    def californiumVersion = '3.4.0'
+    //implementation 'com.github.warkiz.tickseekbar:tickseekbar:0.1.4'
+    implementation group: 'com.github.warkiz.tickseekbar', name: 'tickseekbar', version: '0.1.4'
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'org.eclipse.californium:californium-core:' + californiumVersion
+    implementation 'org.eclipse.californium:element-connector:' + californiumVersion
+    implementation 'org.eclipse.californium:scandium:' + californiumVersion
+    implementation 'org.eclipse.californium:demo-certs:' + californiumVersion
+    implementation 'com.github.tony19:logback-android:2.0.0'
+
+    // https://github.com/EspressifApp/EsptouchForAndroid/tree/master/esptouch-v2
+    implementation project(':esptouch-v2')
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+
+}

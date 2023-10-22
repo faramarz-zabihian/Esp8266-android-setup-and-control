@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="org.eclipse.esp.examples.MainActivity">
+
+    <item
+        android:id="@+id/mnu_touch"
+        android:title="تنظیم کلید" />
+    <item
+        android:id="@+id/mnu_connect"
+        android:title="ارتباط به سرور" />
+</menu>
