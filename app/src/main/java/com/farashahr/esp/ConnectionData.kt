@@ -50,7 +50,7 @@ class ConnectionData {
         }
 
         fun save_connection_data(path: File, conn: ConnectionData) {
-            conn
+//            conn
             val fos = FileOutputStream(File(path, "data"))
             fos.write(Gson().toJson(conn).encodeToByteArray())
             fos.close()

@@ -75,7 +75,7 @@ class LightsAdapter(val list: ArrayList<DeviceAddress>) :
             mView.setOnClickListener(listener)
             light_dimmer.setOnSeekChangeListener(object : OnSeekChangeListener {
                 override fun onSeeking(seekParams: SeekParams) {
-                    val c = command(item.state.port!!, seekParams.progress)
+                    val c = DeviceCommand(item.state.port!!, seekParams.progress)
                     if (mOnClickListener != null) {
                         mView.tag = item
                         item.state.value == seekParams.progress + 1 // 1->2, ... , 5->6

@@ -34,9 +34,9 @@ class BedLightsViewModel(val queryDeliveryUrl:String) : ViewModel() {
         )
     }
     fun sendCommand(ctx: Context, d: DeviceAddress) {
-        send(ctx, d, command(d.Sensor, if (d.state.value != 0) 0 else 1).data)
+        send(ctx, d, DeviceCommand(d.Sensor, if (d.state.value != 0) 0 else 1).data)
     }
     fun readStatus(ctx: Context, d: DeviceAddress) {
-        send(ctx, d, command(0, 0).data)
+        send(ctx, d, DeviceCommand(0, 0).data)
     }
 }

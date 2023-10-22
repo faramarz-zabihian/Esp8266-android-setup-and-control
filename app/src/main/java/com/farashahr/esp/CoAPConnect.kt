@@ -90,7 +90,7 @@ class CoAPConnect {
                     )
                     val value =
                         (cols.dataItems[2] as UnsignedInteger).value.toInt()
-                    val c = command(value)
+                    val c = DeviceCommand(value)
                     for (h in handlers) {
                         var changed = false
                         h.listLive.value?.firstOrNull() {
